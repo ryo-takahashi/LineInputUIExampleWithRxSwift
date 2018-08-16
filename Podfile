@@ -6,4 +6,5 @@ target 'LineInputUIExampleWithRxSwift' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxKeyboard'
+  pod 'RxOptional'
 end
