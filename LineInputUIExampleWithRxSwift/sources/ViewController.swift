@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyBoardHeight in
                 self?.messageInputViewBottomConstraint.constant = -keyBoardHeight
+                self?.view.setNeedsLayout()
                 self?.view.layoutIfNeeded()
             })
             .disposed(by: disposeBag)
