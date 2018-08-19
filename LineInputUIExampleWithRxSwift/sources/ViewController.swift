@@ -25,16 +25,17 @@ class ViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        let maxInputTextViewHeight: CGFloat = 100.0
-        let inputTextViewVerticalMargin: CGFloat = 14.0
+        let inputTextViewMaxHeight: CGFloat = 100.0
+        let inputTextViewVerticalMargin: CGFloat = 12.0
         messageInputView.inputTextView.rx.text
             .asDriver()
             .drive(onNext: { [weak self] _ in
                 guard let height = self?.messageInputView.inputTextView.contentSize.height else { return }
                 let inputTextViewHeight = height + inputTextViewVerticalMargin
-                if maxInputTextViewHeight > inputTextViewHeight {
+                if inputTextViewMaxHeight > inputTextViewHeight {
                     self?.messageInputViewHeightConstraint.constant = inputTextViewHeight
                 }
+                self?.view.setNeedsLayout()
                 self?.view.layoutIfNeeded()
             })
             .disposed(by: disposeBag)
